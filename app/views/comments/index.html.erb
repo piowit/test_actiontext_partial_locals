@@ -55,7 +55,7 @@
           </div>
           
           <div class="prose max-w-none">
-            <%= comment.content %>
+            <%= comment.content.to_s(locals: { object_passed_to_locals: Time.zone.now }) %>
           </div>
         </div>
       <% end %>
