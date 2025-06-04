@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/piowit/rails.git
-  revision: a6f4a6b79fca61a5915e740079cd891daf0da3ee
+  revision: 23b54b4243df1293aeee53868148dbf42df94a48
   branch: actiontext-support-locals-in-attachment-partials
   specs:
     actioncable (8.1.0.alpha)
