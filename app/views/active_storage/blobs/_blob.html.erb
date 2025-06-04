@@ -1,0 +1,38 @@
+<figure class="attachment attachment--<%= blob.representable? ? "preview" : "file" %> attachment--<%= blob.filename.extension %> my-6">
+  <% if blob.representable? %>
+    <div class="relative inline-block">
+      <%= image_tag blob.representation(resize_to_limit: local_assigns[:in_gallery] ? [ 800, 600 ] : [ 1024, 768 ]), 
+                    class: "rounded-lg shadow-md max-w-full h-auto border border-gray-200" %>
+      
+      <!-- Custom overlay with attachment info -->
+      <div class="absolute top-2 right-2 bg-black bg-opacity-50 text-white text-xs px-2 py-1 rounded">
+        <%= number_to_human_size blob.byte_size %>
+      </div>
+    </div>
+  <% else %>
+    <!-- Non-image files -->
+    <div class="bg-gray-50 border border-gray-200 rounded-lg p-4 inline-flex items-center space-x-3">
+      <div class="flex-shrink-0">
+        <svg class="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+        </svg>
+      </div>
+      <div>
+        <div class="text-sm font-medium text-gray-900"><%= blob.filename %></div>
+        <div class="text-sm text-gray-500"><%= number_to_human_size blob.byte_size %></div>
+      </div>
+    </div>
+  <% end %>
+
+  <% if caption = blob.try(:caption) %>
+    <figcaption class="mt-2 text-sm text-gray-600 italic">
+      <%= caption %>
+    </figcaption>
+  <% else %>
+    <figcaption class="mt-2 text-xs text-gray-500">
+      <span class="font-medium"><%= blob.filename %></span>
+      <span class="mx-1">•</span>
+      <span><%= number_to_human_size blob.byte_size %></span>
+    </figcaption>
+  <% end %>
+</figure>
